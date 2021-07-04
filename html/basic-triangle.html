@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WebGL practice</title>
+</head>
+<body>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+ #scene {
+     border: 1px solid lightgray;
+     background: #eee;
+ }
+</style>
+    <canvas id="scene" width="400" height="360"></canvas>
+
+    <!-- Creating GLSL strings using "nojs" script tags -->
+    <script id="vertex-shader-2d" type="notjs">
+    // vec4 is a 4 float value
+    // in JS could be thought as: 
+    // a_position = {x: 0, y: 0, z: 0, w: 0}
+    
+    // Create an attribute which will receive data
+    // from the buffer a_position (array of binary data)
+    attribute vec4 a_position;
+    
+    // all shaders have a main() function
+    void main() {
+        // set the gl_Position variable that
+        // a vertex shader is responsible for settting
+        gl_Position = a_position;
+    }
+    </script>
+    <script id="fragment-shader-2d" type="notjs">
+    // fragment shaders dont have a default precision
+    // so we have to provide one 
+    // (mediump - medium precision is good default)
+    precision mediump float;
+
+    void main() {
+        // gl_FragColor is a special variable
+        // in a vertex shader for defining color
+        gl_FragColor = vec4(1,0,0.5,1);
+    }
+    </script>
+    <script src="../js/basic-triangle.js"></script>
+</body>
+</html>
